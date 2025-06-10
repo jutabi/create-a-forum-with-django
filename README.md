@@ -29,7 +29,7 @@
 26. UPDATE, DELETE only for author
 27. Separate 'views.py' by function
 28. Add recommend (vote) function
-29. Use HTML anchor when comment CREATE, MODIFIY, VOTE
+29. Use HTML anchor when comment CREATE, MODIFY, VOTE
 30. Search Post (basic 'title' search)
 31. Search Post (input 'search_target')
 32. Password reset (basic setting using Django PasswordResetView)

@@ -112,7 +112,7 @@ Comment
 
 > author, modified_date, voted_user, views 속성 추후 추가 예정
 
-#### 3. /forum/models.py
+##### /forum/models.py
 ```
 from django.db import models
 from django.utils import timezone

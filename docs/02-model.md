@@ -1,10 +1,10 @@
-## 02. 모델 생성성
+## 02. 모델 생성
 
 [참고 문헌: 점프 투 장고 / 2-02 모델](https://wikidocs.net/70650)
 
 #### 1. timezone 설정
 ##### forumwithdjango/setting.py
-```
+```python
 # 템플릿과 폼에서만 자동 변환, REST API JSON 응답 시에는 return 전에 views.py 에서 변환 필요 (timezone.localtime())
 LANGUAGE_CODE = 'ko-kr'
 
@@ -37,7 +37,7 @@ Quit the server with CTRL-BREAK.
 ```
 admin, auth, contenttypes, sessions 에 대해 마이그레이션이 필요하다는 안내를 한다. 이 앱들은 Django 프로젝트에서 기본으로 제공되는 어플리케이션인데 이들 중 'admin'어플리케이션이 '/admin/'경로에 해당하는 관리자 기능을 담당한다.
 이 항목들은 Django 프로젝트에 포함된 앱(생성했던 'forum'앱 처럼)들인데 'forum/settings.py'에서 확인할 수 있다.
-```
+```python
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -113,7 +113,7 @@ Comment
 > author, modified_date, voted_user, views 속성 추후 추가 예정
 
 ##### /forum/models.py
-```
+```python
 from django.db import models
 from django.utils import timezone
 
@@ -134,7 +134,7 @@ class Comment(models.Model):
 
 ##### /forumwithdjango/settings.py INSTALLED_APPS
 01강 에서 생성한 앱을 settings 전역 설정에 추가한다.
-```
+```python
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -176,7 +176,7 @@ makemigrations 명령은 models.py에 정의된 모델의 변경사항을 Django
 그리고 migrate 명령어를 실행하면 Django 마이그레이션 시스템이 생성된 migration파일에 작성된 operation 목록을 순서대로 실행하여 각각의 model에 해당하는 데이터베이스 테이블을 생성한다.
 
 ##### 생성된 마이그레이션 파일 (ex. 0001_initial.py)
-```
+```python
 class Migration(migrations.Migration):
 
     initial = True

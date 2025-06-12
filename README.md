@@ -50,9 +50,10 @@
     43. Comment DELETE Ajax
 </details>
 
-#### 프로젝트 진행
+#### 프로젝트 목차
 - [01. Initial setting](/docs/01-Initial-setting.md)
 - [02. Create Model](/docs/02-model.md)
+- [03. Django Administrator](/docs/03-Django-administrator.md)
 
 
 #### 사용 도구

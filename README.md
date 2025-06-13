@@ -54,6 +54,7 @@
 - [01. Initial setting](/docs/01-Initial-setting.md)
 - [02. Create Model](/docs/02-model.md)
 - [03. Django Administrator](/docs/03-Django-administrator.md)
+- [04. READ Posts, Post](/docs/04-READ-Post.md)
 
 
 #### 사용 도구

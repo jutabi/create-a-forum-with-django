@@ -101,7 +101,7 @@ class PostAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     ...
     # Posts list에서 상세(수정) 페이지에 접근하지 않고도 수정할 수 있는 필드 지정
-    list_editable = ['title', 'content']
+    list_editable = ['title']
 
     # 만약 list_display_links 와 중복되는 속성이 있다면 오류를 반환 함으로 주의
     list_display_links = ['content']

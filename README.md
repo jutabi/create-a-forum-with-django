@@ -55,6 +55,37 @@
 - [02. Create Model](/docs/02-model.md)
 - [03. Django Administrator](/docs/03-Django-administrator.md)
 - [04. READ Posts, Post](/docs/04-READ-Post.md)
+- [05. CREATE Post](/docs/05-CREATE-Post.md)
+05. CREATE Post (+ Django Form (+form_errors)
+06. UPDATE Post (Add attribute 'modified_date')
+07. DELETE Post
+08. Bootstrap
+09. Template inheritance
+10. Navigation bar
+11. Post list paging
+12. SignIn / SignOut
+13. SignUp / Membership cancellation
+14. Add attribute(author) to Post
+15. Show author in post_detail
+16. Only the author can UPDATE, DELETE
+17. Vote function with Async (Ajax)
+18. urls.py structure (Flat, Nested, shallow routing)
+19. CREATE Comment SSR + number of comments
+20. CREATE Comment with Async (Fetch)
+21. READ Comments with JsonResponse
+22. UPDATE Comment with Async (Fetch)
+23. DELETE Comment with Async (Fetch)
+24. Separate 'views.py' by function
+25. Search post (basic 'title' search)
+26. Search post (input 'search_target')
+27. Password reset (with using Django PasswordResetView)
+28. Password reset (secure secret keys with using django-environ)
+29. Password change
+30. Member's profile (show created posts, comments)
+31. Navbar dropdown menu
+32. Post views count
+33. Add Markdown editor in CREATE, MODIFY Post
+34. Comments paging
 
 
 #### 사용 도구

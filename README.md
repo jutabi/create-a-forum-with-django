@@ -56,7 +56,7 @@
 - [03. Django Administrator](/docs/03-Django-administrator.md)
 - [04. READ Posts, Post](/docs/04-READ-Post.md)
 - [05. CREATE Post](/docs/05-CREATE-Post.md)
-05. CREATE Post (+ Django Form (+form_errors)
+- [06. UPDATE Post](/docs/06-UPDATE-Post.md)
 06. UPDATE Post (Add attribute 'modified_date')
 07. DELETE Post
 08. Bootstrap

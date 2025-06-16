@@ -237,10 +237,15 @@ def post_create(request):
             </div>
         {% endif %}
         <div class="title">
-        ...
+        <label>Title
+            <!-- 유효한 값이 전달되지 않아 사용자가 다시 입력해야 하는 경우 기존의 입력 데이터를 사용자에게 다시 전달하기 위하여 value값을 설정합니다. -->
+            <input type="text" name="title" required value="{{ form.title.value }}">
+        </label>
         </div>
         <div class="content">
-        ...
+        <label>Content
+            <textarea name="content" required>{{ form.content.value }}</textarea>
+        </label>
         </div>
         <input type="submit" value="제출">
     </form>

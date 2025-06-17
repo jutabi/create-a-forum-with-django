@@ -136,7 +136,7 @@ WARNING: This is a development server. Do not use it in a production setting. Us
 For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
 ```
 ##### 정상 작동 확인
-![스크린샷](/statics/01_01.jpeg)
+![스크린샷](/statics/01/01_01.jpeg)
 
 ##### 안내된 주소(http://127.0.0.1:8000/)에 접속시 정상적으로 GET 요청과 반환이 이루어짐
 ```
@@ -158,18 +158,18 @@ Not Found: /favicon.ico
 [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
 
 ##### 설치 후 프로젝트 디렉토리 열기
-![스크린샷](/statics/01_02.png)
-![스크린샷](/statics/01_03.png)
+![스크린샷](/statics/01/01_02.png)
+![스크린샷](/statics/01/01_03.png)
 ##### 인터프리터 선택 (만들었던 .venv 가상 환경 선택)
-![스크린샷](/statics/01_04.png)
+![스크린샷](/statics/01/01_04.png)
 ##### 터미널 재시동까지 대기
-![스크린샷](/statics/01_05.png)
+![스크린샷](/statics/01/01_05.png)
 ##### 생성했던 앱 (forum) 폴더 내부의 'views.py' 수정
 ```python
 def hello(request):
   return HttpResponse("Hello World!")
 ```
-![스크린샷](/statics/01_06.png)
+![스크린샷](/statics/01/01_06.png)
 ##### 프로젝트 설정 앱 (forumwithdjango) 폴더 내부의 'urls.py' 수정
 ```python
 from forum import views
@@ -179,12 +179,12 @@ urlpatterns = [
     path('forum/', views.hello)
 ]
 ```
-![스크린샷](/statics/01_07.png)
+![스크린샷](/statics/01/01_07.png)
 ##### 파일 저장 후 서버 재가동
 ##### Command Prompt 선택 후 서버 가동 (python manage.py runserver)
-![스크린샷](/statics/01_08.png)
+![스크린샷](/statics/01/01_08.png)
 ##### 정상 작동 확인
-![스크린샷](/statics/01_09.png)
+![스크린샷](/statics/01/01_09.png)
 
 ---
 
@@ -252,6 +252,6 @@ C:\DjangoProjects\forum-with-django>git commit -m "Initial commit"
 #### 8. PyCharm
 
 ##### 지금 까지 했던 프로젝트 생성 작업 원클릭 세팅
-![스크린샷](/statics/01_10.png)
-![스크린샷](/statics/01_11.png)
+![스크린샷](/statics/01/01_10.png)
+![스크린샷](/statics/01/01_11.png)
 > 로컬과 Command Prompt 상관 없이 사용

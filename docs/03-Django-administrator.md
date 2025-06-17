@@ -24,10 +24,10 @@ Superuser created successfully.
 
 #### 2. 관리자 페이지 접속
 이전에 migrate를 통해 활성화한 '/admin/'주소에 접속한다.
-![스크린샷](/statics/03_01.png)
+![스크린샷](/statics/03/03_01.png)
 
 설정했던 관리자 아이디와 비밀번호를 입력하고 접속.
-![스크린샷](/statics/03_02.png)
+![스크린샷](/statics/03/03_02.png)
 
 ---
 
@@ -40,17 +40,17 @@ from forum.models import *
 # Register your models here.
 admin.site.register(Post)
 ```
-![스크린샷](/statics/03_03.png)
+![스크린샷](/statics/03/03_03.png)
 forum 앱 내의 admin.py 에서 PostAdmin 클래스를 선언했기 때문에 FORUM 어플리케이션에 대한 테이블과 Post 모델이 보인다. 
 이후 Member 기능 추가시 Member 앱의 admin.py 를 수정하면 MEMBER 테이블이 보여질 것이다.
 
 우리는 Post 모델을 등록했지만 Django에서 자동으로 Post's'복수형으로 표시한다.
 
-![스크린샷](/statics/03_04.png)
-![스크린샷](/statics/03_05.png)
+![스크린샷](/statics/03/03_04.png)
+![스크린샷](/statics/03/03_05.png)
 이전에 'views.py 맛보기'에서 테스트로 삽입했던 게시물 데이터의 조회와 수정이 가능한 것을 볼 수 있다.
 
-![스크린샷](/statics/03_06.png)
+![스크린샷](/statics/03/03_06.png)
 물론 새로운 post 데이터 추가도 가능하다.
 
 ---
@@ -72,7 +72,7 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 ```
 결과:
-![스크린샷](/statics/03_07.png)
+![스크린샷](/statics/03/03_07.png)
 
 #### list_display
 ```python
@@ -82,7 +82,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'content', 'created_date']
 ```
 결과:
-![스크린샷](/statics/03_08.png)
+![스크린샷](/statics/03/03_08.png)
 
 #### list_display_links
 ```python
@@ -94,7 +94,7 @@ class PostAdmin(admin.ModelAdmin):
     # list_display_links = None
 ```
 결과:
-![스크린샷](/statics/03_09.png)
+![스크린샷](/statics/03/03_09.png)
 
 #### list_editable
 ```python
@@ -108,7 +108,7 @@ class PostAdmin(admin.ModelAdmin):
     list_editable = ['title', 'content'] (X)
 ```
 결과:
-![스크린샷](/statics/03_10.png)
+![스크린샷](/statics/03/03_10.png)
 
 #### list_per_page
 ```python
@@ -118,7 +118,7 @@ class PostAdmin(admin.ModelAdmin):
     list_per_page = 5
 ```
 결과:
-![스크린샷](/statics/03_11.png)
+![스크린샷](/statics/03/03_11.png)
 
 #### ordering
 ```python
@@ -128,7 +128,7 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['-created_date']
 ```
 결과:
-![스크린샷](/statics/03_12.png)
+![스크린샷](/statics/03/03_12.png)
 
 #### fields, exclude
 ```python
@@ -142,7 +142,7 @@ class PostAdmin(admin.ModelAdmin):
     exclude = ['created_date']
 ```
 결과:
-![스크린샷](/statics/03_13.png)
+![스크린샷](/statics/03/03_13.png)
 
 #### fields 중첩
 ```python
@@ -152,7 +152,7 @@ class PostAdmin(admin.ModelAdmin):
     fields = [('title', 'content'), 'created_date']
 ```
 결과:
-![스크린샷](/statics/03_14.png)
+![스크린샷](/statics/03/03_14.png)
 
 #### fieldsets
 ```python
@@ -172,5 +172,5 @@ class PostAdmin(admin.ModelAdmin):
     ]
 ```
 결과:
-![스크린샷](/statics/03_15.png)
-![스크린샷](/statics/03_16.png)
+![스크린샷](/statics/03/03_15.png)
+![스크린샷](/statics/03/03_16.png)

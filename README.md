@@ -57,8 +57,7 @@
 - [04. READ Posts, Post](/docs/04-READ-Post.md)
 - [05. CREATE Post](/docs/05-CREATE-Post.md)
 - [06. UPDATE Post](/docs/06-UPDATE-Post.md)
-06. UPDATE Post (Add attribute 'modified_date')
-07. DELETE Post
+- [07. DELETE Post](/docs/07-DELETE-Post.md)
 08. Bootstrap
 09. Template inheritance
 10. Navigation bar

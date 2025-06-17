@@ -19,7 +19,7 @@ Django에서는 모든 datetime을 UTC 로 저장하는 것이 원칙이다.
 #### 2. 마이그레이션
 '01. 초기설정'에서 작성한 urls.py 를 보면 'admin/'주소로 라우팅이 되어 있는 것을 확인할 수 있다.
 그런데 막상 /admin/에 접속해보면 아래의 오류가 보여진다.
-![스크린샷](/statics/02_01.png)
+![스크린샷](/statics/02/02_01.png)
 우리가 runserver 명령을 통해 서버를 가동했을 떄 표시되었던 오류를 보면
 ```
 (.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py runserver
@@ -80,17 +80,17 @@ Running migrations:
 Django 마이그레이션 시스템에 의해 필요한 테이블이 생성된다.
 
 ##### 결과 확인
-![스크린샷](/statics/02_05.png)
+![스크린샷](/statics/02/02_05.png)
 Django가 기본적으로 제공하는 admin 관리자 페이지가 정상적으로 작동하는 것을 볼 수 있다.
 
 
 ##### 생성된 테이블을 보고싶다면:
 db.sqlite3 파일을 더블클릭 하고 확인
-![스크린샷](/statics/02_02.png)
+![스크린샷](/statics/02/02_02.png)
 ##### 1. sql 쿼리문 입력 후 실행
-![스크린샷](/statics/02_03.png)
+![스크린샷](/statics/02/02_03.png)
 ##### 2. 파이참 데이터베이스 도구 사용
-![스크린샷](/statics/02_04.png)
+![스크린샷](/statics/02/02_04.png)
 
 ---
 

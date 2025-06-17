@@ -132,8 +132,8 @@ def post_create(request):
 ```
 
 #### 결과 확인
-![스크린샷](/statics/05_01.png)
-![스크린샷](/statics/05_02.png)
+![스크린샷](/statics/05/05_01.png)
+![스크린샷](/statics/05/05_02.png)
 ```
 [16/Jun/2025 14:25:17] "GET /posts/new/ HTTP/1.1" 200 677
 [16/Jun/2025 14:25:29] "POST /posts/new/ HTTP/1.1" 302 0
@@ -255,9 +255,9 @@ def post_create(request):
 
 #### 결과 확인
 개발자 도구에 들어가 input, textarea의 required 속성을 지우고 제출버튼을 눌러보자.
-![스크린샷](/statics/05_03.png) 
-![스크린샷](/statics/05_04.png) 
+![스크린샷](/statics/05/05_03.png) 
+![스크린샷](/statics/05/05_04.png) 
 오류메세지가 정상적으로 출력된다.
 
 값을 입력한 뒤 제출하여도 정상적으로 게시물 작성이 완료된다.
-![스크린샷](/statics/05_05.png) 
+![스크린샷](/statics/05/05_05.png) 

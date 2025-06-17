@@ -92,6 +92,6 @@ def post_update(request, pk):
 ```
 
 #### 결과 확인
-![스크린샷](/statics/06_01.png)
-![스크린샷](/statics/06_02.png)
-![스크린샷](/statics/06_03.png)
+![스크린샷](/statics/06/06_01.png)
+![스크린샷](/statics/06/06_02.png)
+![스크린샷](/statics/06/06_03.png)

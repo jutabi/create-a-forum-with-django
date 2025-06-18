@@ -319,6 +319,28 @@ post_detail.html
 공식문서의 card 문서
 [https://getbootstrap.com/docs/5.3/components/card/](https://getbootstrap.com/docs/5.3/components/card/)
 
+#### 모바일 디바이스 대응
+[https://getbootstrap.com/docs/5.3/getting-started/introduction/#viewport-meta](https://getbootstrap.com/docs/5.3/getting-started/introduction/#viewport-meta)
+
+##### \<head>의 \<meta>태그에 viewport meta 추가
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <!-- 모바일 반응형 웹페이지를 위한 viewport meta 태그 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+```
+이제 모바일 페이지에서 반응형 디자인 및 터치 확대 조절이 지원됩니다.
+개발자 도구에서 Ctrl+Shift+M 단축키를 이용해 모바일 디바이스 에뮬레이션을 할 수 있습니다.
+|![](/statics/08/08_10.jpeg) | ![](/statics/08/08_11.jpeg) | ![](/statics/08/08_12.jpeg) |
+|-----------|-------------|-----------|
+| post_list | post_detail | post_form |
+
 ---
 
 ### 3. 스크립트 분리

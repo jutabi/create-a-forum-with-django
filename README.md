@@ -58,8 +58,8 @@
 - [05. CREATE Post](/docs/05-CREATE-Post.md)
 - [06. UPDATE Post](/docs/06-UPDATE-Post.md)
 - [07. DELETE Post](/docs/07-DELETE-Post.md)
-08. Bootstrap
-09. Template inheritance
+- [08. Django static, bootstrap](/docs/08-Template-inheritance.md)
+- [09. Template inheritance](/docs/08-Template-inheritance.md)
 10. Navigation bar
 11. Post list paging
 12. SignIn / SignOut
@@ -93,4 +93,5 @@
 | python    |                | 3.13.1 |
 |           | Django         | 5.2.2  |
 |           | django-environ | 0.12.0 |
+| bootstrap |                | 5.3.x  |
 | SimpleMDE |                | 1.11.2 |

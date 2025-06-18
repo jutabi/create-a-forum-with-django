@@ -145,8 +145,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # 최상위 url(localhost:8000/)은 forum앱의 post_list를 보여줄 수 있도록 합니다.
+    path('', forum_views.post_list),
     path('admin/', admin.site.urls),
-
     #위의 admin 설정에서 보이는 것처럼 settings.py의 INSTALLED_APPS에 작성된 forum, admin을 통해 앱 내부의 py에 접근이 가능합니다.
     # /posts/이후의 요청에 대해서는 전부 forum 앱의 urls.py가 담당합니다. (ex. posts/12/delete ...)
     path('posts/', include('forum.urls')),

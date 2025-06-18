@@ -1,5 +1,7 @@
 ## 06. UPDATE Post
 
+[참고 문헌: 점프 투 장고 / 3-09 수정과 삭제](https://wikidocs.net/71445)
+
 #### 1. 모델 속성 추가
 forum/models.py
 ```python

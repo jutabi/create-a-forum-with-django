@@ -1,5 +1,7 @@
 ## 05. CREATE Post (+Django Form)
 
+[참고 문헌: 점프 투 장고 / 2-10 폼](https://wikidocs.net/70855)
+
 ### 1. POST 요청을 이용해보자
 지금까지 진행했던 post_list와 post_detail은 'GET' HTTP Method를 이용했다.
 이번엔 'POST' HTTP Method를 사용하여 사용자가 데이터를 서버에 전송해보자.
@@ -51,8 +53,8 @@ CSRF(Cross-Site Request Forgery 사이트간 요청 위조)는 해커가 사용�
 
 이를 막기 위해서 csrf 토큰을 사용하는 데 사용자가 form태그가 있는 url에 접속하면 사용자의 쿠키와 form에 csrf 토큰을 발행합니다. 그리고 서버는 어떠한 POST 요청이 온다면 그 토큰 값이 서로 일치하는지 확인한 후 요청에 대한 처리를 합니다.
 이 값은 html의 hidden 값으로 설정되어 있습니다. 
-![스크린샷](/statics/05_06.png)
-![스크린샷](/statics/05_07.png)
+![스크린샷](/statics/05/05_06.png)
+![스크린샷](/statics/05/05_07.png)
 둘의 value가 다른 이유는 \<input>csrf 태그는 값이 마스킹 처리되어 있기 때문입니다.
 쿠키의 csrftoken은 서버가 생성한 원본 토큰입니다. 브라우저에 저장되어 클라이언트와 서버가 값을 공유합니다.
 폼의(input)csrfmiddlewaretoken은 원본 토큰을 서버가 마스킹 작업을 하여 변형한 값입니다. 

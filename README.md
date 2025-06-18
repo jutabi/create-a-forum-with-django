@@ -60,7 +60,7 @@
 - [07. DELETE Post](/docs/07-DELETE-Post.md)
 - [08. Django static, bootstrap](/docs/08-Static&Bootstrap.md)
 - [09. Template inheritance](/docs/09-Template-inheritance.md)
-10. Navigation bar
+- [10. Navigation bar](/docs/10-Navigation-bar.md)
 11. Post list paging
 12. SignIn / SignOut
 13. SignUp / Membership cancellation

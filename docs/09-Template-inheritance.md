@@ -41,28 +41,28 @@ Forum
 <!-- body 블록(body 태그 내부)의 내용을 작성합니다. -->
 {% block body %}
 <div class="container">
-<table class="table table-striped table-hover">
-    <thead>
-        <tr class="table-secondary">
-            <th style="width: 10%">글번호</th>
-            <th style="width: 60%">제목</th>
-            <th style="width: 15%">작성일</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        {% if posts %}
-        {% for post in posts %}
-        <tr>
-            <td>{{ post.pk }}</td>
-            <td>
-                <a href="{% url 'forum:post_detail' post.pk %}">{{ post.title }}</a>
-            </td>
-            <td>{{ post.created_date|date:"Y/m/d A h:i" }}</td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-    </tbody>
-</table>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="table-secondary">
+                <th style="width: 10%">글번호</th>
+                <th style="width: 60%">제목</th>
+                <th style="width: 15%">작성일</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% if posts %}
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.pk }}</td>
+                <td>
+                    <a href="{% url 'forum:post_detail' post.pk %}">{{ post.title }}</a>
+                </td>
+                <td>{{ post.created_date|date:"Y/m/d A h:i" }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
 <a href="{% url 'forum:post_create' %}" class="btn btn-primary">게시물 작성</a>
 </div>
 {% endblock body %}

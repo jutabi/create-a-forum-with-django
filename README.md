@@ -61,7 +61,7 @@
 - [08. Django static, bootstrap](/docs/08-Static&Bootstrap.md)
 - [09. Template inheritance](/docs/09-Template-inheritance.md)
 - [10. Navigation bar](/docs/10-Navigation-bar.md)
-11. Post list paging
+- [11. Post list paging](/docs/11-Post-list-paging.md)
 12. SignIn / SignOut
 13. SignUp / Membership cancellation
 14. Add attribute(author) to Post

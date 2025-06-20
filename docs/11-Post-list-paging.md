@@ -357,7 +357,7 @@ post_list.html
 post_list.js
 ```javascript
 function makePageItem(innerText, page, isCurrentPage) {
-    let pageItemLi = document.createElement('li');
+    const pageItemLi = document.createElement('li');
     pageItemLi.classList.add('page-item');
 
     let pageLinkA;

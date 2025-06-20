@@ -54,15 +54,18 @@
 - [01. Initial setting](/docs/01-Initial-setting.md)
 - [02. Create Model](/docs/02-model.md)
 - [03. Django Administrator](/docs/03-Django-administrator.md)
+---
 - [04. READ Posts, Post](/docs/04-READ-Post.md)
 - [05. CREATE Post](/docs/05-CREATE-Post.md)
 - [06. UPDATE Post](/docs/06-UPDATE-Post.md)
 - [07. DELETE Post](/docs/07-DELETE-Post.md)
+---
 - [08. Django static, bootstrap](/docs/08-Static&Bootstrap.md)
 - [09. Template inheritance](/docs/09-Template-inheritance.md)
 - [10. Navigation bar](/docs/10-Navigation-bar.md)
 - [11. Post list paging](/docs/11-Post-list-paging.md)
-12. SignIn / SignOut
+---
+- [12. Log In & Log Out](/docs/12-Sign-in&Sign-out.md)
 13. SignUp / Membership cancellation
 14. Add attribute(author) to Post
 15. Show author in post_detail

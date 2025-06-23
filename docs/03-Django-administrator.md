@@ -4,7 +4,7 @@
 
 #### 1. 슈퍼 유저 생성
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py createsuperuser
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py createsuperuser
 사용자 이름 (leave blank to use 'mckay'): admin
 이메일 주소: ***@google.com   
 Password: 
@@ -15,7 +15,7 @@ This password is too short. It must contain at least 8 characters.
 Bypass password validation and create user anyway? [y/N]: y
 Superuser created successfully.
 
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>
 
 ```
 비밀번호에 대한 경고가 출력되지만 ***y***를 입력하여 강인할 수 있다.

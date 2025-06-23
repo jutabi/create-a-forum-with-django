@@ -16,18 +16,18 @@ class Post(models.Model):
 ```
 ##### 마이그레이션
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py makemigrations
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py makemigrations
 Migrations for 'forum':
   forum\migrations\0002_post_updated_date.py
     + Add field updated_date to post
 
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py migrate
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, forum, sessions
 Running migrations:
   Applying forum.0002_post_updated_date... OK
 
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>
 
 ```
 

@@ -8,7 +8,7 @@
 ### 테스트 데이터 생성
 #### 장고 쉘에서 반복문을 이용하여 테스트 데이터를 생성, 삽입하자
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py shell
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py shell
 8 objects imported automatically (use -v 2 for details).
 
 Python 3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)] on win32

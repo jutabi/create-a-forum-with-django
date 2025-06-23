@@ -66,7 +66,8 @@
 - [11. Post list paging](/docs/11-Post-list-paging.md)
 ---
 - [12. Log In & Log Out](/docs/12-Sign-in&Sign-out.md)
-13. SignUp / Membership cancellation
+- [13. Sign Up](/docs/13-Sign-Up.md)
+---
 14. Add attribute(author) to Post
 15. Show author in post_detail
 16. Only the author can UPDATE, DELETE
@@ -84,7 +85,7 @@
 28. Password reset (secure secret keys with using django-environ)
 29. Password change
 30. Member's profile (show created posts, comments)
-31. Navbar dropdown menu
+31. Membership cancellation
 32. Post views count
 33. Add Markdown editor in CREATE, MODIFY Post
 34. Comments paging

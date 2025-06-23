@@ -22,7 +22,7 @@ Django에서는 모든 datetime을 UTC 로 저장하는 것이 원칙이다.
 ![스크린샷](/statics/02/02_01.png)
 우리가 runserver 명령을 통해 서버를 가동했을 떄 표시되었던 오류를 보면
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py runserver
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py runserver
 Watching for file changes with StatReloader
 Performing system checks...
 
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 ##### migrate
 서버 실행시 안내된 마이그레이션 명령어를 실행한다.
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py migrate
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, sessions
 Running migrations:
@@ -75,7 +75,7 @@ Running migrations:
   Applying auth.0012_alter_user_first_name_max_length... OK
   Applying sessions.0001_initial... OK
 
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>
 ```
 Django 마이그레이션 시스템에 의해 필요한 테이블이 생성된다.
 
@@ -157,19 +157,19 @@ INSTALLED_APPS = [
 ##### migrate 명령으로 서술한 모델들 (Post, Comment)의 테이블을 만들기 전에 해주어야 하는 makemigrations
 터미널에 'python manage.py makemigrations'를 입력하자.
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py makemigrations
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py makemigrations
 Migrations for 'forum':
   forum\migrations\0001_initial.py
     + Create model Post
     + Create model Comment
 
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py migrate
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, forum, sessions
 Running migrations:
   Applying forum.0001_initial... OK
 
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>
 ```
 모델을 생성하거나 모델에 변경사항이 있다면 migrate를 하기 전 ***migration***을 만들어 주어야 한다.
 makemigrations 명령은 models.py에 정의된 모델의 변경사항을 Django ORM이 migration파일을 생성한다.(/앱 이름/migrations/000X_XXXXX.py))
@@ -214,7 +214,7 @@ class Migration(migrations.Migration):
 ##### 모델 데이터 생성
 터미널에 'python manage.py shell'을 입력해보자.
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py shell
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py shell
 8 objects imported automatically (use -v 2 for details).
 
 Python 3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)] on win32
@@ -225,7 +225,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 여기서는 작업중인 프로젝트에 대한 파이썬 명령어를 사용할 수 있다.
 테스트 디버그를 하는 것 처럼 파이썬 코드를 작성하여 Post 객체를 생성하고 데이터베이스에 저장해보자.
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py shell
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py shell
 8 objects imported automatically (use -v 2 for details).
 
 Python 3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)] on win32
@@ -269,7 +269,7 @@ class Post(models.Model):
 ```
 shell 를 종료 후 재실행 하여 쿼리셋을 다시 불러와본다. (ctrl+z or quit() 입력으로 종료.)
 ```
-(.venv) C:\Users\simi7\PycharmProjects\forum-with-django>python manage.py shell
+(.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py shell
 8 objects imported automatically (use -v 2 for details).
 
 Python 3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)] on win32

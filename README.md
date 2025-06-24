@@ -67,9 +67,8 @@
 ---
 - [12. Log In & Log Out](/docs/12-Sign-in&Sign-out.md)
 - [13. Sign Up](/docs/13-Sign-Up.md)
+- [14. Add author to Post](/docs/14-Add-author-to-Post.md)
 ---
-14. Add attribute(author) to Post
-15. Show author in post_detail
 16. Only the author can UPDATE, DELETE
 17. Vote function with Async (Ajax)
 18. urls.py structure (Flat, Nested, shallow routing)

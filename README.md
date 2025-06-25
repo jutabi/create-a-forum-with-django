@@ -70,15 +70,16 @@
 - [14. Add author to Post](/docs/14-Add-author-to-Post.md)
 - [15. Only the author can UPDATE, DELETE](/docs/15-Only-the-author-can-UPDATE-DELETE-posts.md)
 ---
+- [16. URL routing structure (Flat, Nested, shallow)](/docs/16-URL-routing-structure.md)
+- [17. CREATE, READ Comment (SSR) + number of comments]
+- [18. READ Comment (Async JsonResponse)]
+- [19. CREATE Comment (Async)]
+- [20. UPDATE Comment (Async)]
+- [21. DELETE Comment (Async)]
+- [22. Separate 'views.py' by function]
+---
 
-17. Vote function with Async (Ajax)
-18. urls.py comment structure (Flat, Nested, shallow routing)
-19. CREATE Comment SSR + number of comments
-20. CREATE Comment with Async (Fetch)
-21. READ Comments with JsonResponse
-22. UPDATE Comment with Async (Fetch)
-23. DELETE Comment with Async (Fetch)
-24. Separate 'views.py' by function
+17. Vote function with Async (Ajax, Fetch)
 25. Search post (basic 'title' search)
 26. Search post (input 'search_target')
 27. Password reset (with using Django PasswordResetView)

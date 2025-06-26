@@ -1,5 +1,7 @@
 ## 14. Post 모델에 author 속성 추가
 
+[참고 문헌: 점프 투 장고 / 3-07 모델 변경](https://wikidocs.net/71306)
+
 ### author 속성 추가와 코드 연계 수정
 
 #### forum/models.py

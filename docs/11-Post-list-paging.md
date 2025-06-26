@@ -402,7 +402,7 @@ const pageLinks = document.querySelectorAll('a.page-link');
 pageLinks.forEach((pageLink) => {
     pageLink.addEventListener('click', (event) => {
         event.preventDefault();
-        location.href = "/?page=" + pageLink.dataset.page;
+        location.href = "/posts/?page=" + pageLink.dataset.page;
     })
 })
 ```

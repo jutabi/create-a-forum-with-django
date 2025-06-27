@@ -22,7 +22,7 @@
 ---
 - [16. URL routing structure (Flat, Nested, shallow)](/docs/16-URL-routing-structure.md)
 - [17. CREATE, READ Comment (SSR) + number of comments](/docs/17-CREATE-READ-Commemt(SSR).md)
-- [18. Separate 'views.py' by function]
+- [18. Separate 'views.py' by function](/docs/18-Separate-views-by-function.md)
 - [19. READ Comment (Async JsonResponse)]
 - [20. CREATE Comment (Async)]
 - [21. UPDATE Comment (Async)]

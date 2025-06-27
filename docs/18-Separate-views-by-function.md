@@ -164,7 +164,7 @@ urlpatterns = [
 #### forum/urls.py
 ```python
 from django.urls import path
-from forum.views import *
+from forum.views import base_views, post_views, comment_views
 
 app_name = 'forum'
 

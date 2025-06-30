@@ -184,6 +184,41 @@ redirectLogin.forEach(function(element){
 })
 ```
 
+#### post_list.html
+```html
+{% extends 'base.html' %}
+{% block title %}
+Forum
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-striped table-hover">
+        <thead>
+            ...
+        </thead>
+        <tbody class="table-group-divider">
+            {% if posts %}
+            {% for post in posts %}
+            <tr>
+                <td class="text-center">{{ post.pk }}</td>
+                <td class="text-center">
+                    <!--게시물 리스트에서 댓글 수를 표시해 줍시다.-->
+                    <a href="{% url 'forum:post_detail' post.pk %}">{{ post.title }}</a> [{{ post.comment_set.count }}]
+                </td>
+                <td class="text-center">{{ post.author }}</td>
+                <td class="text-center">{{ post.created_date|date:"Y/m/d A h:i" }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+    ...
+</div>
+{% endblock body %}
+```
+
 ---
 
 ### 결과 확인
@@ -191,3 +226,4 @@ redirectLogin.forEach(function(element){
 ![스크린샷](/statics/17/17_02.png)
 ![스크린샷](/statics/17/17_03.png)
 ![스크린샷](/statics/17/17_04.png)
+![스크린샷](/statics/17/17_05.png)

@@ -231,12 +231,12 @@ function requestComments(post_pk) {
 
 #### II. fetch
 ajax(jQuery)는 이제 레거시의 영역에 들어가고 새로운 프로젝트의 비동기 요청 방식으로는 사용되지 않습니다.
-대신 fetch와 Axios라는 더 현대적인 도구를 사용하는데요. 그 이유를 간략하게 알아보겠습니다.
+대신 fetch나 Axios같은 더 현대적인 도구를 사용하는데요. 그 이유를 간략하게 알아보겠습니다.
 
 ##### fetch의 장점
 1. 네이티브 지원: fetch는 모든 최신 브라우저에 내장되어 있어 jQuery같은 별도 라이브러리 설치가 필요하지 않습니다.
   성능에도 영향을 줍니다.
-2. 간결한 문법: Promise를 기반하여 async/await와 함께 사용 시 코드가 매우 간단합니다.
+2. 간결한 문법: Promise를 기반하여 async/await와 함께 사용 시 코드를 동기 처리처럼 작성할 수 있어 간단합니다.
 3. 최근에는 React, Vue, Angular 같은 프론트엔드 프레임워크를 사용하며 이들은 jQuery를 필요로 하지 않습니다.
 
 ##### 01. fetch 기본 사용법
@@ -350,7 +350,7 @@ function requestCommentsAjax(post_pk) {
 function requestCommentsFetch(post_pk) {
     fetch(`/posts/${post_pk}/comments/`)
         .then(response => response.json())
-        // async/await 없이 사용 시 fetch는 비동기 처리이기 때문에 then 내부에서만 해당 변수 사용가능
+        // async/await 없이 사용 시 fetch는 비동기 처리이기 때문에 then 내부에서만 해당 변수 사용가능 합니다.
         .then(data => {
             console.log(data);
             renderComments(data);
@@ -358,7 +358,7 @@ function requestCommentsFetch(post_pk) {
         .catch(error => console.log(error));
 }
 
-// 3. async/await를 이용한 코드 동기 처리
+// 3. async/await를 이용한 코드 동기 처리 ('동기 처럼'쓰는 것이지 실제로는 비동기 처리입니다.)
 async function getComments(post_pk) {
     try {
         const response = await fetch(`/posts/${post_pk}/comments/`);
@@ -381,7 +381,7 @@ function formatISODate(date) {
 }
 
 function renderComments(comments) {
-    // <div class="comments">를 제외한 하위 속성 모두 createElement합니다.
+    // <div class="comments">를 제외한 하위 태그 모두 createElement합니다.
     const commentsDiv = document.querySelector('.comments')
     // 전달받은 JSON의 리스트를 돌며
     comments.forEach(comment => {
@@ -468,13 +468,14 @@ Forum: {{ post.title }}
         <div hidden>을 사용하는 것도 가능하지만 둘은 차이점이 존재합니다.
         <template>
           렌더링 시점에 DOM에 포함되지 않습니다.
-          내부 콘텐츠가 실제 DOM 트리의 일부가 아닙니다. 렌더링,스크립트,스타일 모두 적용되지 않습니다.
-          JS로 동적 복제/삽입에 최적화, 재사용을 위해 만들어진 태그
+          내부 콘텐츠가 실제 DOM 트리의 일부가 아닙니다. 렌더링, 스크립트, 스타일 모두 적용되지 않습니다.
+            ('틀'을 제공하는 것 입니다.)
+          JS로 동적 복제/삽입에 최적화, 재사용을 위해 만들어진 태그입니다.
           어떤 위치에서도 사용 가능하고 <div><tr></tr><div>같은 부모가 필요한 태그도 자유롭게 사용 가능합니다.
           ('template').content.cloneNode(true) 로 접근합니다.
         <div hidden>
           hidden으로 가려져 있을 뿐 렌더링 시점에 DOM에 포함됩니다.
-          내부 콘텐츠가 실제 DOM 트리의 일부입니다. 스크립트, 스타일 모두 적용됩니다.
+          내부 콘텐츠가 실제 DOM 트리의 일부입니다. 보이지 않을 뿐 스크립트, 스타일 모두 적용됩니다.
           div는 재사용을 위한 태그가 아닙니다. 접근성과 성능 저하의 우려가 있습니다.
           <div><tr></tr></div> 당연하게도 사용이 불가능합니다.
           ('div').children.cloneNode(true) 로 접근합니다.
@@ -527,7 +528,7 @@ function renderComments(comments) {
 ##### 결과 확인
 ![스크린샷](/statics/19/19_05.png)
 
-#### + 템플릿 리터럴
+#### + III. 템플릿 리터럴 이용하기
 ```javascript
 async function getComments(post_pk) {
     try {
@@ -543,6 +544,7 @@ async function getComments(post_pk) {
 }
 
 function templateLiteral(comments) {
+    // 문자열을 한번에 innerHTML에 입력하기 위해 forEach 대신 map을 사용했습니다.
     const innerHTMLTest = comments.map(comment => `
         <div class="card mb-3">
             <div class="card-header">${comment['author__nickname']}</div>
@@ -555,6 +557,7 @@ function templateLiteral(comments) {
             </div>
         </div>
     `).join('');
+    // innerHTML에는 하나의 문자열만 넣을 수 있음으로 join('')을 통해 문자열 배열을 하나의 문자열로 합쳐줍니다.
     document.querySelector('.test').innerHTML = innerHTMLTest;
 }
 ```
@@ -567,7 +570,7 @@ html 코드를 백틱(`)내부에 작성하고 innerHTML를 통해 통째로 집
 ![스크린샷](/statics/19/19_08.png)
 
 innerHTML을 사용시에는 반드시 사용자 입력을 HTML 이스케이프 해야 합니다.
-당연하게도 우리가 사용했던 createElement방법과 \<template>방법도 append, createElement나 innerText, textContent가 아닌 innerHTML를 사용하면 같은 문제가 발생합니다.
+당연하게도 우리가 사용했던 createElement방법과 \<template>방법도 사용할 이유가 없었을 뿐 append, createElement나 innerText, textContent가 아닌 innerHTML를 사용하면 같은 문제가 발생합니다.
 
 ##### HTML escape 예시
 ```javascript
@@ -597,3 +600,112 @@ function templateLiteral(comments) {
 
 ##### 결과 확인
 ![스크린샷](/statics/19/19_09.png)
+
+
+#### + IV. Django 템플릿 엔진 이용하기
+templates/forum/comment_list.html
+```html
+{% for comment in post.comment_set.all %}
+<div class="card mb-3">
+    <div class="card-header">
+        {{ comment.author }}
+    </div>
+    <div class="card-body">
+        <div class="card-text" style="white-space: pre-wrap">{{ comment.content }}</div>
+    </div>
+    <div class="card-footer" style="font-size: small">
+        <div>작성일: {{ comment.created_date|date:"Y/m/d A h:i" }}</div>
+
+        {% with temp=comment.updated_date|date:"Y/m/d A h:i" %}
+        <div>수정일: {{ temp|default:"수정 사항 없음" }}</div>
+        {% endwith %}
+    </div>
+</div>
+{% endfor %}
+```
+기존의 SSR 코드를 새로운 Django 템플릿으로 옮겨줍니다.
+
+comment_views.py
+```python
+def comment_list(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+
+    # render_to_string
+    # 기존의 render 메서드와 다르게 HttpResponse객체를 반환하지 않고 문자열을 반환합니다.
+    # 문자열: 템플릿 파일을 context를 이용하여 렌더링 하고 HTML(or Text)문자열로 반환하는 메서드 입니다.
+
+    # 현 프로젝트 처럼 클라이언트의 비동기 요청 시 HTML조각을 서버에서 렌더링 하여 전송해 주거나
+    # 이메일, 알림 등에서 템플릿을 기반하여 사용자에게 전달할 메세지를 만들 때,
+    # 문자열 파일(txt, js. css)을 동적으로 생성 후 전달할 때 사용합니다.
+    html = render_to_string('forum/comment_list.html', {'post': post})
+    return HttpResponse(html)
+```
+
+post_list.js
+```javascript
+async function loadComments(post_pk) {
+    try {
+        const response = await fetch(`/posts/${post_pk}/comments/`);
+        if (!response.pk) throw new Error("Error");
+        const htmlData = await response.text();
+        renderComments(htmlData);
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+function renderComments(htmlData) {
+    document.querySelector('.test').innerHTML = htmlData;
+}
+```
+
+##### 결과 확인
+![스크린샷](/statics/19/19_10.png)
+
+innerHTML을 사용하였는데 XSS공격이 작동하지 않습니다. Django 템플릿 엔진은 자동 이스케이프를 지원하기 때문입니다.
+[https://docs.djangoproject.com/en/5.2/ref/templates/builtins/#escape](https://docs.djangoproject.com/en/5.2/ref/templates/builtins/#escape)
+모든 변수를 출력 시 HTML 특수 문자를 안전한 엔티티로 변환하여(스트링 값) 처리합니다. (&lt, &gt, &amp...)
+\<script>alert(1)\</script> => \&lt;script\&gt;alert(1)\&lt;/script\&gt;
+
+만약 신뢰된 데이터(ex. 관리자 전용 메세지 html 태그)를 포함하고 싶다면:
+```python
+    content = "<img src='https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png'>"
+
+    from django.utils.safestring import mark_safe
+    html = render_to_string('forum/comment_list.html', {'post': post, 'content': mark_safe(content)})
+
+    from django.utils.safestring import SafeString
+    html = render_to_string('forum/comment_list.html', {'post': post, 'content': SafeString(content)})
+```
+혹은 템플릿 내에서:
+```html
+{% for comment in post.comment_set.all %}
+<div class="card mb-3">
+    ...
+    <div class="card-body">
+        <!--1. autoescape off -->
+        {% autoescape off %}
+        <div class="card-text" style="white-space: pre-wrap">{{ comment.content }}</div>
+        {% endautoescape %}
+
+        <!--2. 'safe' template filter -->
+        <div class="card-text" style="white-space: pre-wrap">{{ comment.content|safe }}</div>
+    </div>
+    ...
+</div>
+{% endfor %}
+```
+
+##### Django template를 사용한 비동기 처리는 권장되는 방법인가
+장고 템플릿을 활용하는 방법도 바닐라 장고를 사용한 웹 어플리케이션에서는 좋은 방법이 될 수 있습니다.
+
+하지만 최근에는 REST API가 표준으로 자리잡으며 서버와 클라이언트의 역할을 명확히 분리하게 되었습니다.
+서버는 데이터(JSON 등)만 제공하고 클라이언트는 데이터를 받아 화면을 렌더링 하는 서버와 클라이언트의 역할 분리가 중요합니다.
+
+장점으로 프론트/백 엔드가 독립적인 개발/배포가 가능하며 (유지보수 까지)
+렌더링시 서버의 자원을 사용하지 않고 클라이언트 디바이스에서 처리,
+SPA(Single Page Application)와 같은 현대적 UI에 적합하고
+복잡한 동적 UI/UX, 사용자와 웹 어플리케이션 간 상호작용,
+다양한 클라이언트 디바이스(웹, 모바일)에서 같은 API를 사용할 수 있습니다.
+ 
+장고만으로 프로젝트를 개발한다면 문제가 되지 않겠지만 백/프론트를 서로 다른 포트를 개방하여 각자의 프레임워크로 개발하고 API를 통해 정보를 전달하는 최근의 프로젝트 개발 경향과는 맞지 않는다는 단점이 있습니다.

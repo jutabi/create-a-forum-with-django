@@ -40,6 +40,10 @@ def comment_list(request, post_pk):
 
     comments = post.comment_set.all().values()
     return JsonResponse(list(comments), safe=False)
+    # JsonResponse는 기본적으로 dict만 JSON으로 리턴할 수 있습니다. 다만 safe옵션을 False로 설정하면
+    # list같은 다른 타입(tuple, string...)도 리턴할 수 있도록 해줍니다.
+    # 이와 같은 이유로 위의 코드에서 list()로 comments 쿼리셋을 감싸줄 필요는 없지만,
+    # 쿼리셋을 JsonResponse에 담으면 내부적으로 list가 되기 때문에 명시적으로 list()를 감싸준 것입니다.
 
     # ------------------------------------------------------------------------
 

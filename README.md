@@ -24,7 +24,7 @@
 - [17. CREATE, READ Comment (SSR) + number of comments](/docs/17-CREATE-READ-Commemt(SSR).md)
 - [18. Separate 'views.py' by function](/docs/18-Separate-views-by-function.md)
 - [19. READ Comment (Async JsonResponse)](/docs/19-READ-Comments-(Async-JsonResponse).md)
-- [20. CREATE Comment (Async)]
+- [20. CREATE Comment (Async)](/docs/20-CREATE-Comment-(Async).md)
 - [21. UPDATE Comment (Async)]
 - [22. DELETE Comment (Async)]
 - [23. Comments paging]

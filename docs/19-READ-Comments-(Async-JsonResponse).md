@@ -482,7 +482,7 @@ Forum: {{ post.title }}
           내부 콘텐츠가 실제 DOM 트리의 일부입니다. 보이지 않을 뿐 스크립트, 스타일 모두 적용됩니다.
           div는 재사용을 위한 태그가 아닙니다. 접근성과 성능 저하의 우려가 있습니다.
           <div><tr></tr></div> 당연하게도 사용이 불가능합니다.
-          ('div').children.cloneNode(true) 로 접근합니다.
+          ('div').cloneNode(true) 로 접근합니다.
         -->
         <template id="comment-template">
             <div class="card mb-3">

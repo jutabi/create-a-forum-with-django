@@ -26,7 +26,7 @@
 - [19. READ Comment (Async JsonResponse)](/docs/19-READ-Comments-(Async-JsonResponse).md)
 - [20. CREATE Comment (Async)](/docs/20-CREATE-Comment-(Async).md)
 - [21. UPDATE Comment (Async)](/docs/21-UPDATE-Comment-(Async).md)
-- [22. DELETE Comment (Async)]
+- [22. DELETE Comment (Async)](/docs/22-DELETE-Comment-(Async).md)
 - [23. Comments paging]
 ---
 - [24. Vote function (Async)]

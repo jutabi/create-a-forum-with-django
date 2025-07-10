@@ -148,11 +148,11 @@ Forum: {{ post.title }}
 ```javascript
 function bindDeleteListeners() {
     const deleteLinks = document.querySelectorAll('.delete-link');
-    deleteLinks.forEach(function (element) {
-        element.addEventListener('click', function () {
-            if (confirm("정말 삭제하시겠습니까?")) {
-                //location.href = element.getAttribute('data-url');
-                location.href = this.dataset.url;
+    deleteLinks.forEach(function(element) {
+        element.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if(confirm("정말 삭제하시겠습니까?")) {
+                element.submit();
             }
         })
     })

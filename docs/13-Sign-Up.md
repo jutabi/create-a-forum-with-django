@@ -2,7 +2,7 @@
 
 [참고 문헌: 점프 투 장고 / 3-06 회원가입](https://wikidocs.net/71303)
 
-### urls.py
+### urls\.py
 ```python
 from django.urls import path
 from django.contrib.auth import views as auth_views
@@ -112,7 +112,7 @@ class RegisterForm(UserCreationForm):
         else: return nickname
 ```
 
-### views.py
+### views\.py
 ```python
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
@@ -263,7 +263,7 @@ Superuser created successfully.
 ```
 
 
-#### admin.py
+#### admin\.py
 간단하게 회원 데이터를 관리하는 admin 기능을 연결합시다.
 ```python
 from django.contrib import admin

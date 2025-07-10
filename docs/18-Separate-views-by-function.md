@@ -7,7 +7,7 @@
 
 ### \_\_init__.py 이용하기
 #### 선행지식
-Django는 기본적으로 각 앱의 views.py 파일을 뷰 모듈로 인식합니다.
+Django는 기본적으로 각 앱의 views\.py 파일을 뷰 모듈로 인식합니다.
 하지만 views가 디렉토리여도 그 안에 \_\_init__.py파일이 있고 분리된 뷰 파일을 import 해준다면 단일 views.py를 사용할 때와 똑같은 사용이 가능합니다.
 
 #### views 디렉토리 생성
@@ -83,7 +83,7 @@ def comment_create(request, post_pk):
     ...
 ```
 
-#### views.py 삭제 후 서버 가동
+#### views\.py 삭제 후 서버 가동
 이제 내용이 빈 views.py를 삭제하고 서버를 가동해 봅시다.
 ```
 (.venv) C:\Users\***\PycharmProjects\forum-with-django>python manage.py runserver
@@ -139,10 +139,10 @@ from .comment_views import *
 
 정상 작동하는 것은 알겠으나 우리는 기능별로 뷰 파일을 분류한 이유는 파일 하나에서 모든 기능을 구현하다 보니 코드가 길어진다는 단점 때문도 있었지만 유지보수에도 이득을 가져가기 위해서 분리를 진행했습니다.
 
-그러나 우리의 urls.py를 보면 views.post_*** / views.comment_*** 처럼 어느 뷰 파일에 존재하는지는 명확하게 구분이 불가능합니다. 그저 하나의 views.py 파일에 작성된 것 처럼 보입니다.
+그러나 우리의 urls\.py를 보면 views.post_*** / views.comment_*** 처럼 어느 뷰 파일에 존재하는지는 명확하게 구분이 불가능합니다. 그저 하나의 views\.py 파일에 작성된 것 처럼 보입니다.
 
 물론 우리가 FBV 메서드 이름을 post_ comment_ 식으로 명시하긴 했지만 이러한 메서드들만 존재하는 것이 아닙니다.
-그래서 우리는 \_\_init__.py를 삭제하고 urls.py 에서 모듈의 이름을 명시적으로 임포트 할 것 입니다.
+그래서 우리는 \_\_init__.py를 삭제하고 urls\.py 에서 모듈의 이름을 명시적으로 임포트 할 것 입니다.
 
 #### forumwithdjango/urls.py
 ```python

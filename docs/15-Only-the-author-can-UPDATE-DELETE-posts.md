@@ -155,9 +155,21 @@ def post_update(request, pk):
     ...
 
 
+@login_required
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('forum:post_list')
+    return HttpResponseNotAllowed(['POST'])
+
+# require_POST 데코레이터를 사용하여 아래와 같이 코드를 변경할 수 있습니다.
 @require_POST
 @login_required
 def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('forum:post_list')
     ...
 ```
 
@@ -180,3 +192,6 @@ def post_delete(request, pk):
 2. 수정 버튼을 클릭하고 로그인을 하면 수정 페이지로 이동하게 됩니다. 그러나 삭제 요청의 경우 POST 방식으로 처리해야 하는데 next 쿼리 파라미터 때문에 GET 방식으로 요청하게 되어 405에러를 반환합니다. 
 
 다음 차시에서 이를 해결할 수 있는 방법들에 대해 알아보겠습니다.
+<!-- 여러 방법이 있지만 사용자를 뒤로가기 시키는게 제일 간편 -->
+<!-- 1. next 파라미터 직접 조정 (커스텀 데코레이터 생성 필요) -->
+<!-- 2. 프론트엔드에서 next 직접 지정 (비동기 요청 필요) -->

@@ -9,23 +9,23 @@
 forum은 Post와 Comment의 CRUD를 위한 앱인 것 처럼 User의 CRUD를 담당하는 'member'앱을 생성해 봅시다.
 
 #### 1. 앱 생성
-##### I. django-admin startapp *** / python manage.py startapp ***
+##### I. django-admin startapp *** / python manage\.py startapp ***
 터미널에 직접 명령어를 입력하여 앱을 생성합니다. 다만 앱을 생성하는 명령어가 두가지 인데
 1. django-admin startapp
     - Django가 설치된 환경 어디서는 실행 가능합니다.
     - 프로젝트의 설정을 불러오지 않기 때문에 가상환경이나 여러 프로젝트가 섞여 있으면 원하는 프로젝트에 앱이 만들어지지 않을 수도 있습니다.
     - 여러 프로젝트의 세팅을 바꿔가며 작업할때 사용합니다.
-2. python manage.py startapp
+2. python manage\.py startapp
     - 현재 Django 프로젝트의 설정을 함께 불러와서 실행합니다.
-    - manage.py에서 실행하다 보니 자동으로 프로젝트의 settings.py 경로와 환경변수를 세팅해줍니다.
+    - manage\.py에서 실행하다 보니 자동으로 프로젝트의 settings\.py 경로와 환경변수를 세팅해줍니다.
     - 프로젝트 내부에서 작업할 때는 이 방식을 쓰는 것이 권장됩니다.
 
-결과로만 보면 만들어지는 앱은 동일합니다. 다만 manage.py를 사용하는 것이 현재 프로젝트를 인식하고 앱을 생성하기 때문에 오작동을 방지하기 위해서라도 manage.py startapp이 권장되는 방법입니다.
+결과로만 보면 만들어지는 앱은 동일합니다. 다만 manage\.py를 사용하는 것이 현재 프로젝트를 인식하고 앱을 생성하기 때문에 오작동을 방지하기 위해서라도 manage\.py startapp이 권장되는 방법입니다.
 
 ##### II. Pycharm (IDE)를 이용한 앱 생성
 ![스크린샷](/statics/12/12_01.png)
 
-#### 2. settings.py 앱 등록
+#### 2. settings\.py 앱 등록
 파이참을 통해 생성했다면 자동으로 등록되어 있을 것 입니다.
 ```python
 INSTALLED_APPS = [
@@ -207,7 +207,7 @@ urlpatterns = [
              template_name='member/signin.html'),
          name='sign_in'),
 ```
-settings.py
+settings\.py
 ```python
 ...
 
@@ -263,7 +263,7 @@ required 속성을 제거하고 빈 값을 제출했을 때 (필드 에러):
 2. 로그인시 /accounts/profile/로 이동한다.
 
 ##### 해결방법
-1. views.py 에서 클래스뷰를 불러올 때 next_page 속성 전달
+1. views\.py 에서 클래스뷰를 불러올 때 next_page 속성 전달
 ```python
 from django.urls import path
 from django.contrib.auth import views as auth_views
@@ -279,7 +279,7 @@ urlpatterns = [
 해당 뷰에만 적용되는 옵션입니다. 
 여러 로그인 뷰가 있다면 각각 다르게 설정 가능하고, 뷰에서 next_page를 지정하면 아래의 LOGIN_REDIRECT_URL보다 우선 적용됩니다.
 
-2. settings.py LOGIN_REDIRECT_URL = '/' 변수 삽입
+2. settings\.py LOGIN_REDIRECT_URL = '/' 변수 삽입
 ```python
 ...
 

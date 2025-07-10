@@ -33,7 +33,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### Django Paginator
 
-#### views.py
+#### views\.py
 page_list를 템플릿에게 전달해주는 forum/views.py 의 post_list()를 수정합시다.
 ```python
 from django.core.paginator import Paginator

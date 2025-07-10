@@ -296,13 +296,17 @@ post_detail.html
                 <a href="{% url 'forum:post_list' %}"
                    class="btn btn-secondary mt-2 justify-content-around">글 목록</a>
             </div>
-            <div class="col text-end">
+            <!-- a태그와 form태그를 한줄로 배치하기 위해 d-flex 클래스를 사용했습니다. -->
+            <!-- flex 클래스는 내부 요소들의 우측정렬을 위해 justify-content-end를 사용합니다. -->
+            <div class="col d-flex justify-content-end">
                 <a href="{% url 'forum:post_update' post.pk %}"
                    class="btn btn-outline-success mt-2">수정</a>
 
-                <a href="javascript:void(0)"
-                   class="btn btn-danger mt-2 delete-link"
-                   data-url="{% url 'forum:post_delete' post.pk %}">삭제</a>
+                <!-- a 태그와 마진을 주기 위해 ms-1 클래스 사용 -->
+                <form action="{% url 'forum:post_delete' post.pk %}" method="POST" class="delete-link ms-1">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger mt-2 delete-link" value="삭제">
+                </form>
             </div>
         </div>
     </div>
@@ -349,12 +353,12 @@ post_detail.html 의 스크립트를 .js파일로 분리시켜 봅시다.
 /static/js/post_detail.js 생성 
 (post_detail.html에서만 사용되며 Post, Comment의 수정과 삭제를 담당할 예정입니다.)
 ```javascript
-const deleteLink = document.querySelectorAll('.delete-link');
-deleteLink.forEach(function(element) {
-    element.addEventListener('click', function() {
+const deleteLinks = document.querySelectorAll('.delete-link');
+deleteLinks.forEach(function(element) {
+    element.addEventListener('submit', function(event) {
+        event.preventDefault();
         if(confirm("정말 삭제하시겠습니까?")) {
-            //location.href = element.getAttribute('data-url');
-            location.href = this.dataset.url;
+            element.submit();
         }
     })
 })

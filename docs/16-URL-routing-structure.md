@@ -70,7 +70,7 @@
 ---
 
 ### 패스 파라미터(URL 패턴) / 쿼리 파라미터(GET 쿼리스트링)
-urls.py 에서 작성한 URL패턴이 '/posts/\<int:post_id>/comments/'라고 하면,
+urls\.py 에서 작성한 URL패턴이 '/posts/\<int:post_id>/comments/'라고 하면,
 
 ##### ex. Ajax 요청시 패스 파라미터와 쿼리 파라미터
 ```javascript

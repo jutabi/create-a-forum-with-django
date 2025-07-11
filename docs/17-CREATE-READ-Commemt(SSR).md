@@ -70,6 +70,7 @@ urlpatterns = [
 
 #### forum/views.py
 ```python
+@login_required
 def comment_create(request, post_pk):
     if request.method == 'POST':
         post = get_object_or_404(Post, pk=post_pk)
@@ -92,8 +93,7 @@ def comment_create(request, post_pk):
     return HttpResponseNotAllowed(['POST'])
 
 ```
-댓글 생성 html \<form>은 post_detail에 존재하기 때문에 GET요청을 받을 일이 없어 request.method 검사가 필요하지 않습니다.
-하지만 예외상황을 위해 POST요청인지 묻고 아니라면 NotAllowed(405) 에러를 반환해 줍니다.
+댓글 생성 html \<form>은 post_detail에 존재하기 때문에 GET요청을 받을 일이 없습니다. 다만 Post뷰 때와 마찬가지로 서버 데이터의 변경을 담당하기 때문에 POST요청으로만 요청받도록 합니다. 아니라면 NotAllowed(405) 에러를 반환해 줍니다.
 
 ---
 

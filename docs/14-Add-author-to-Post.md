@@ -158,7 +158,7 @@ Forum: {{ post.title }}
 ![스크린샷](/statics/14/14_04.png)
 ValueError가 발생하는데 우리가 Post를 create할 때 post.author 값에 request.author 값을 넣어주는데 이때 로그인이 되어있지 않다면 AnonymousUser object를 반환해 주기 때문에 오류가 발생하는 것입니다.
 
-이를 해결하기 위해 FBV의 어노테이션 기능을 사용합니다.
+이를 해결하기 위해 FBV의 데코레이터 기능을 사용합니다.
 ```python
 from django.contrib.auth.decorators import login_required
 ...
@@ -169,9 +169,9 @@ def post_create(request):
     elif request.method == 'POST':
         ...
 ```
-많은 어노테이션중 login_required를 사용합니다. 우리가 직접 뷰 함수 내에 로그인 하지 않은 사용자에 대한 처리를 하지 않고 이 어노테이션 선언 하나만으로 로그인 하지 않은 사용자에 대한 접근 제한과 로그인 페이지 안내를 해결할 수 있습니다.
+많은 데코레이터중 login_required를 사용합니다. 우리가 직접 뷰 함수 내에 로그인 하지 않은 사용자에 대한 처리를 하지 않고 이 데코레이터 선언 하나만으로 로그인 하지 않은 사용자에 대한 접근 제한과 로그인 페이지 안내를 해결할 수 있습니다.
 
-어노테이션은 일반적인 메서드처럼 속성을 사용할 수 있습니다.
+데코레이터은 일반적인 메서드처럼 속성을 사용할 수 있습니다.
 ```python
 @login_required(login_url='member:login')
 def post_create(request):
@@ -183,7 +183,7 @@ def post_create(request):
 ![스크린샷](/statics/14/14_05.png)
 자동으로 로그인 페이지로 이동되며 ?next 라는 쿼리 파라미터가 작성되어 있는 것을 확인하실 수 있습니다.
 이는 로그인이 완료되면 next의 값 (/posts/new/)로 이동시켜 주겠다는 뜻입니다.
-#### 주의
+#### \<form>내부 데이터로 next 전달
 우리는 로그인 뷰를 직접 구현하지 않고 Django.contrib.auth.views의 LoginView()를 사용하고 있습니다. 
 하지만 직접 구현시에는 next를 사용하기 위해 login.html 템플릿에 한가지 설정을 해주어야 하는 경우가 있습니다.
 ```html
@@ -211,14 +211,19 @@ Login
 ```
 ![스크린샷](/statics/14/14_08.png)
 위의 코드와 스크린샷을 참고하면 csrf토큰과 같이 hidden 타입의 next라는 name을 가지는 input태그를 확인하실 수 있습니다.
-어노테이션은 쿼리스트링에도 next 값을 적어주고 POST 요청을 위한 {{ next }}값도 전달해 줍니다.
+데코레이터은 쿼리 파라미터에도 next 값을 적어주고 POST 요청을 위한 {{ next }}템플릿 변수도 전달해 줍니다.
 
-로그인 뷰를 직접 구현했다면 개발자는 next에 대한 코드(next 값이 존재한다면 그 페이지로 리다이렉트)를 작성해야 하는데 이 태그를 사용해서 POST 데이터로 전달받거나, GET 쿼리 파라미터로 next 값을 받아서 처리해야 합니다.
+로그인 뷰를 직접 구현했다면 개발자는 next에 대한 코드(next 값이 존재한다면 그 페이지로 리다이렉트)를 작성해야 하는데 
+이 태그를 사용해서 POST 데이터로 전달받거나, GET 쿼리 파라미터로 next 값을 받아서 처리할 수 있습니다.
 {둘 다 지원해도 좋습니다.( if request.GET.get['next'] or if request.POST.get['next'] )}
 (코드를 작성하지 않는다면 당연하게도 기존의 LOGIN_REDIRECT_URL에 해당하는 주소로 이동하게 됩니다.)
 
 하지만 Django의 LoginView()는 GET 전달, POST 전달 두 방식 모두 대응해 주기 때문에 우리는 저 input 태그가 없어도 쿼리 파라미터의 next값 만으로 정상작동 합니다.
 
+##### 만약 두 값 모두 전달된다면?
+Django의 로그인 뷰는 POST 데이터(폼의 input값)을 우선해서 처리합니다.
+직접 \<input name="next" value="/posts/???">와 같이 로그인 템플릿을 수정하여 코드를 작동시켜 봅시다.
+url의 쿼리 파라미터로 전달된 값이 아닌 우리가 설정한 url로 이동하게 됩니다.
 
 #### 결과 확인
 ![스크린샷](/statics/14/14_06.png)

@@ -26,6 +26,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from forum.forms import CommentForm
 from forum.models import *
 
+@login_required
 def comment_create(request, post_pk):
     ...
 

@@ -365,7 +365,7 @@ LogoutView를 사용하고 싶다면 전부 POST 요청해야만 합니다.
 ![스크린샷](/statics/12/12_09.png)
 로그인 했을 때를 떠올려 보면 무엇을 해야할지 감이 잡히실 것 같습니다.
 
-settings.py
+settings\.py
 ```python
 ...
 

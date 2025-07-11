@@ -36,6 +36,8 @@ def get_comments(post_pk):
     return custom_field
 
 
+@login_required
+# Post의 CUD때와 마찬가지로 @login_required 데코레이터를 사용해 줍니다.
 def comment_create(request, post_pk):
     if request.method == 'POST':
         post = get_object_or_404(Post, pk=post_pk)
@@ -129,6 +131,7 @@ async function apiFetch(url, method = 'get', body = null) {
         const response = await fetch(url, options);
         if (!response.ok) throw new Error(response.statusText);
 
+        // apiFetch()를 호출할 때 await를 사용하기 때문에 await없이 리턴했습니다.
         return response.json();
     } catch (error) {
         console.error(`Fetch: Failed to fetch: ${error}`);

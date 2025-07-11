@@ -51,6 +51,8 @@ def get_comments(post_pk):
         })
     return custom_field
 
+
+@login_required
 def comment_update(request, post_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
 

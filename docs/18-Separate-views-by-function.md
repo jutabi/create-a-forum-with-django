@@ -63,9 +63,11 @@ def post_detail(request, post_pk):
 def post_create(request):
     ...
 
+@login_required
 def post_update(request, post_pk):
     ...
 
+@login_required
 def post_delete(request, post_pk):
     ...
 ```
@@ -79,6 +81,7 @@ from forum.forms import CommentForm
 from forum.models import *
 
 
+@login_required
 def comment_create(request, post_pk):
     ...
 ```

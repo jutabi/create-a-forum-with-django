@@ -28,14 +28,17 @@ def post_update(request, pk):
     elif request.method == 'POST':
         ...
 
+
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    
     if request.user != post.author:
         return HttpResponseForbidden("다른 사용자의 게시물은 삭제하실 수 없습니다.")
 
-    post.delete()
-
-    return redirect('forum:post_list')
+    if request.method == 'POST':
+        post.delete()
+        return redirect('forum:post_list')
+    return HttpResponseNotAllowed(['POST'])
 ```
 로그인 한 사용자가 작성하지 않은 게시물의 수정 또는 삭제 버튼을 클릭해 봅시다.
 ##### 결과 확인
@@ -79,6 +82,20 @@ Forum: {{ post.title }}
             <a href="javascript:void(0)"
                class="btn btn-danger mt-2 delete-link"
                data-url="{% url 'forum:post_delete' post.pk %}">삭제</a>
+            {% endif %}
+        </div>
+        <div class="col d-flex justify-content-end">
+            <!--뷰와 똑같이 request.user를 이용해 세션의 로그인된 사용자 객체를 불러와 비교합니다.-->
+            <!--글 목록 버튼이 왼쪽 정렬이기 때문에 <dic class="col">까지 if문 안에 포함시켜 
+                col 자체를 출력하지 않아도 괜찮습니다.-->
+            {% if post.author == request.user %}
+            <a href="{% url 'forum:post_update' post.pk %}"
+                class="btn btn-outline-success mt-2">수정</a>
+
+            <form action="{% url 'forum:post_delete' post.pk %}" method="POST" class="delete-link ms-1">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger mt-2 delete-link" value="삭제">
+            </form>
             {% endif %}
         </div>
     </div>
@@ -191,7 +208,6 @@ def post_delete(request, pk):
 물론 뒤로가기를 두번 클릭하면 수정했던 내용과 함께 렌더되었던 페이지가 보이고 제출버튼을 클릭해도 수정이 정상적으로 이루어집니다만 당연히 좋은 방법이라고는 할 수 없습니다.
 2. 수정 버튼을 클릭하고 로그인을 하면 수정 페이지로 이동하게 됩니다. 그러나 삭제 요청의 경우 POST 방식으로 처리해야 하는데 next 쿼리 파라미터 때문에 GET 방식으로 요청하게 되어 405에러를 반환합니다. 
 
-다음 차시에서 이를 해결할 수 있는 방법들에 대해 알아보겠습니다.
-<!-- 여러 방법이 있지만 사용자를 뒤로가기 시키는게 제일 간편 -->
-<!-- 1. next 파라미터 직접 조정 (커스텀 데코레이터 생성 필요) -->
-<!-- 2. 프론트엔드에서 next 직접 지정 (비동기 요청 필요) -->
+다만 위의 문제들은 로그인이 되어있는 사용자가 인지 하지 못한 세션 타임아웃이나 다른 탭에서의 로그아웃에 의해 생기는 문제들 입니다.
+현재 우리 프로젝트는 세션 타임아웃을 지정하지 않았고(기본값 2주(1209600초)), 게시물을 수정하고 있는 사용자가 다른 탭에서 로그아웃을 하는 것은 매우 특수한 상황입니다.
+당연히 해결해야 할 문제이지만 일반적이지 않고 댓글의 CUD 작업 시에도 발생하는 문제이며 효율적으로 해결하는 방법 중 하나가 비동기 요청을 이용한 방법이기 때문에 댓글의 비동기 CRUD가 끝나고 그 다음 차시에서 이 문제를 해결하는 방법에 대해 알아보겠습니다.

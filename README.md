@@ -27,6 +27,7 @@
 - [20. CREATE Comment (Async)](/docs/20-CREATE-Comment-(Async).md)
 - [21. UPDATE Comment (Async)](/docs/21-UPDATE-Comment-(Async).md)
 - [22. DELETE Comment (Async)](/docs/22-DELETE-Comment-(Async).md)
+- [23. Async login & Store draft data](/docs/23-Async-login&Store-draft-data.md)
 - [23. Comments paging]
 ---
 - [24. Vote function (Async)]
@@ -42,6 +43,9 @@
 ---
 - [32. Post views count]
 - [33. Add Markdown editor in CREATE, MODIFY Post]
+---
+- 세션 타임아웃 지정
+- 신규 댓글 알림 (short polling)
 
 
 #### 사용 도구

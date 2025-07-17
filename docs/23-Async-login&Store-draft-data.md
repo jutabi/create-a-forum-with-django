@@ -273,4 +273,4 @@ document.querySelector('#post-form').addEventListener('submit', function() {
 {% endblock body %}
 ```
 
-정상 작동이 확인되면 이제 static/js/에 스크립트 파일을 분리해 줍시다.
+정상 작동이 확인되면 이제 만료일을 변경하고 static/js/에 스크립트 파일을 분리해 줍시다.

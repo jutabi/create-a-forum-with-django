@@ -28,7 +28,7 @@
 - [21. UPDATE Comment (Async)](/docs/21-UPDATE-Comment-(Async).md)
 - [22. DELETE Comment (Async)](/docs/22-DELETE-Comment-(Async).md)
 - [23. Async login & Store draft data](/docs/23-Async-login&Store-draft-data.md)
-- [23. Comments paging]
+- [23. Comments paging](/docs/24-Comments-paging.md)
 ---
 - [24. Vote function (Async)]
 - [25. Search post in post_list (basic 'title' search)]

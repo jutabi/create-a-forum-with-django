@@ -28,21 +28,21 @@
 - [21. UPDATE Comment (Async)](/docs/21-UPDATE-Comment-(Async).md)
 - [22. DELETE Comment (Async)](/docs/22-DELETE-Comment-(Async).md)
 - [23. Async login & Store draft data](/docs/23-Async-login&Store-draft-data.md)
-- [23. Comments paging](/docs/24-Comments-paging.md)
+- [24. Comments paging](/docs/24-Comments-paging.md)
 ---
-- [24. Vote function (Async)]
-- [25. Search post in post_list (basic 'title' search)]
-- [26. Search post in post_list (input 'search_target')]
+- [25. Vote function (Async)](/docs/25-Vote(recommend).md)
+- [26. Search post in post_list (basic 'title' search)]
+- [27. Search post in post_list (input 'search_target')]
 ---
-- [27. Password reset (with using Django PasswordResetView)]
-- [28. Password reset (secure secret keys with using django-environ)]
-- [29. Password change]
+- [28. Password reset (with using Django PasswordResetView)]
+- [29. Password reset (secure secret keys with using django-environ)]
+- [30. Password change]
 ---
-- [30. Member's profile page(show created posts, comments, voted_posts)]
-- [31. Membership cancellation in profile page]
+- [31. Member's profile page(show created posts, comments, voted_posts)]
+- [32. Membership cancellation in profile page]
 ---
-- [32. Post views count]
-- [33. Add Markdown editor in CREATE, MODIFY Post]
+- [33. Post views count]
+- [34. Add Markdown editor in CREATE, MODIFY Post]
 ---
 - 세션 타임아웃 지정
 - 신규 댓글 알림 (short polling)

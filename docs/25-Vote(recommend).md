@@ -206,7 +206,8 @@ def get_comments(post_pk, page):
     for post in posts: # 반복문 내 추가 쿼리 (N 쿼리)
         print(post.author.username)
         # N개의 게시물에 대해 N번의 추가 데이터베이스 쿼리
-        # 외래키인 author속성에 대해서 ORM은 외래키인 author의 pk값 만을 요청합니다.
+        # 외래키인 author속성에 대해서 ORM은 외래키인 author의 pk값 만을 요청합니다. (lazy loading)
+            # author의 내부 필드에 접근하면 그때서야 해당 author에 접근하기 위해 추가 쿼리를 날림
         # 그래서 author 객체의 하위 속성인 username에 접근하기 위해서는 
         # 해당 pk값을 가지는 author객체를 쿼리하여 생성 후 해당 데이터에 접근하게 됩니다.
     ```
@@ -313,7 +314,7 @@ Forum: {{ post.title }}
         </div>
         <!-- 글 목록 버튼과 수정,삭제 버튼 사이에 추천 버튼을 위치시킵니다. -->
         <div class="col text-center">
-            <button class="btn btn-primary vote mt-2" data-url="">추천
+            <button class="btn btn-primary mt-2 vote-button" data-url="">추천
                 <span class="badge text-bg-secondary">{{ post.voted_users.count }}</span>
             </button>
         </div>
@@ -330,7 +331,7 @@ Forum: {{ post.title }}
                     <div class="col author"></div>
                     <div class="col vote text-end">
                         <!-- 카드 헤더의 오른쪽 상단에 추천 버튼을 위치시킵니다. -->
-                        <button class="btn btn-primary btn-sm vote">추천
+                        <button class="btn btn-primary btn-sm vote-button">추천
                             <span class="badge text-bg-secondary"></span>
                         </button>
                     </div>
@@ -354,7 +355,7 @@ function renderComments(comments, requestPage, lastPage) {
         cardDiv.firstElementChild.id = `comment-${comment['pk']}`;
 
         cardDiv.querySelector('.card-header .author').append(`${comment['nickname']} (${comment['username']})`);
-        cardDiv.querySelector('.card-header .vote button span').textContent = comment['voted_users_count']
+        cardDiv.querySelector('.card-header .vote-button span').textContent = comment['voted_users_count']
     ...
 ```
 
@@ -364,11 +365,213 @@ function renderComments(comments, requestPage, lastPage) {
 ---
 
 ### 2. 추천 기능 (서버 측 작업)
-```python
 
+#### urls\.py
+```python
+urlpatterns = [
+    ...
+    # 장고에서 추천 기능을 하나의 리소스로 본다면 새 모델을 생성하고 /vote/로 url 라우팅 구조를 빼주는 것이 좋겠지만
+    # 추천 종류, 날짜, 기록 같은 세부 기능은 구현하지 않기 때문에 Post와 Comment의 한 기능으로써 구현해 봅시다.
+    ...
+    path('<int:post_pk>/vote/',   post_views.post_vote,   name='post_vote'),
+    ...
+    path('<int:post_pk>/comments/<int:comment_pk>/vote/',    comment_views.comment_vote,   name='comment_vote'),
 ```
+
+#### 추천 기능 로직
+```python
+# post_views의 추천 기능
+def post_vote(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    if not post.voted_users.filter(username=request.user.username).exists():
+        post.voted_users.add(request.user)
+        context = {
+            'status': 'added',
+            'voted_users_count': post.voted_users.count(),
+        }
+    else:
+        post.voted_users.remove(request.user)
+        context = {
+            'status': 'removed',
+            'voted_users_count': post.voted_users.count(),
+        }
+    return JsonResponse(context)
+
+# comment_views의 추천 기능
+def comment_vote(request, post_pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if not comment.voted_users.filter(username=request.user.username).exists():
+        comment.voted_users.add(request.user)
+            context = {
+            'status': 'added',
+            'voted_users_count': comment.voted_users.count(),
+        }
+    else:
+        comment.voted_users.remove(request.user)
+        context = {
+            'status': 'removed',
+            'voted_users_count': comment.voted_users.count(),
+        }
+    return JsonResponse(context)
+```
+두 함수는 voted_users속성을 가지는 특정 모델 인스턴스를 수정하는데, 코드가 중복됩니다. (IDE에서도 경고해 줍니다.)
+해당 뷰함수의 공통 로직을 분리하여 재사용(DRY Don't Repeat Yourself)해 봅시다.
+
+#### base_views\.py
+```python
+def vote_toggle(request, obj):
+    if not obj.voted_users.filter(username=request.user.username).exists():
+        obj.voted_users.add(request.user)
+        context = {
+            'status': 'added',
+            'voted_users_count': obj.voted_users.count(),
+        }
+    else:
+        obj.voted_users.remove(request.user)
+        context = {
+            'status': 'added',
+            'voted_users_count': obj.voted_users.count(),
+        }
+    return context
+```
+특정 인스턴스를 매개변수로 받아 voted_users 속성에 대한 수정작업을 하는 공통 로직을 작성했습니다.
+vote에 대한 views를 따로 생성하지 않고 기존에 post_list를 담당하고 있던 base_views에 작성하였습니다.
+
+#### post_views.py
+```python
+@require_POST
+@login_required
+def post_vote(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    from forum.views.base_views import vote_toggle
+    context = vote_toggle(request, post)
+    return JsonResponse(context)
+```
+
+#### comment_views.py
+```python
+@require_POST
+@login_required
+def comment_vote(request, post_pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    from forum.views.base_views import vote_toggle
+    context = vote_toggle(request, comment)
+    return JsonResponse(context)
+```
+해당 뷰 함수에서 Post, Comment에 따라 모델 인스턴스만 생성 후 base_views의 추천 함수에 전달해 주었습니다.
+해당 함수는 오로지 vote에서만 사용함으로 로컬 임포트를 하여 진행했습니다.
 
 ### 2. 추천 기능 (클라이언트 측 작업)
-```js
+이제 게시물과 댓글의 추천 요청을 비동기로 보내봅시다.
 
+#### post_detail.html
+```html
+<!-- 게시물의 추천 버튼에 데이터셋을 이용하여 추천 기능 url을 삽입합니다. (댓글은 JS에서 렌더링 시 삽입) -->
+<button class="btn btn-primary mt-2 vote-button"
+        data-url="{% url 'forum:post_vote' post.pk %}">추천
+    <span class="badge text-bg-secondary">{{ post.voted_users.count }}</span>
+</button>
 ```
+
+#### post_detail.js
+```js
+import {makePagination} from '/static/js/paging.js';
+
+const csrfTokenValue = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+function bindDeleteListeners() {
+    ...
+}
+function bindUpdateListeners() {
+    ...
+}
+
+// vote 기능 바인더
+function bindVoteListeners() {
+    const voteButtons = document.querySelectorAll('.vote-button');
+    voteButtons.forEach(function (element) {
+        element.addEventListener('click', async function () {
+            const body = new FormData();
+            body.append('csrfmiddlewaretoken', csrfTokenValue);
+
+            const context = await apiFetch(this.dataset.url, 'POST', body)
+            if (context.status === 'added' || context.status === 'deleted') {
+                this.querySelector('span').textContent = context['voted_users_count'];
+            }
+        })
+    })
+}
+
+
+function renderComments(comments, requestPage, lastPage) {
+    const commentsDiv = document.querySelector('.comments');
+    commentsDiv.innerHTML = '';
+    comments.forEach(comment => {
+        ...
+        cardDiv.querySelector('.card-header .vote-button').dataset.url = `comments/${comment['pk']}/vote/`
+        cardDiv.querySelector('.card-header .vote-button span').textContent = comment['voted_users_count']
+        ...
+    })
+    bindDeleteListeners();
+    bindUpdateListeners();
+    bindVoteListeners();
+    ...
+}
+```
+
+##### 결과 확인
+![스크린샷](/statics/25/25_02.png)
+
+#### base_views.py
+게시물 리스트에도 추천 수를 표시해 봅시다.
+```python
+def post_list(request):
+    #메서드 체이닝을 위해 소괄호로 감싸기
+    posts = (
+        Post.objects
+        # author.username을 출력하기 위해
+        .select_related('author')
+        # 추천 수를 출력하기 위해
+        .annotate(voted_users_count=Count('voted_users'))
+        .order_by('-created_date')
+    )
+    request_page = request.GET.get('page', 1)
+
+    paginator = Paginator(posts, 10)
+    page_obj = paginator.get_page(request_page)
+
+    context = {'posts': page_obj}
+
+    return render(request, 'forum/post_list.html', context)
+```
+
+#### post_list.html
+```html
+<thead>
+    <tr class="table-secondary text-center">
+        <th style="width: 6%">글번호</th>
+        <th style="width: 50%">제목</th>
+        <th style="width: 10%">작성자</th>
+        <th style="width: 15%">작성일</th>
+        <th style="width: 4%">추천</th>
+    </tr>
+</thead>
+<tbody class="table-group-divider">
+    {% if posts %}
+    {% for post in posts %}
+    <tr>
+        <td class="text-center">{{ post.pk }}</td>
+        <td class="text-center">
+            <a href="{% url 'forum:post_detail' post.pk %}">{{ post.title }}</a> [{{ post.comment_set.count }}]
+        </td>
+        <td class="text-center">{{ post.author.nickname }}</td>
+        <td class="text-center">{{ post.created_date|date:"Y/m/d A h:i" }}</td>
+        <td class="text-center">{{ post.voted_users_count }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</tbody>
+```
+
+#### 결과 확인
+![스크린샷](/statics/25/25_03.png)

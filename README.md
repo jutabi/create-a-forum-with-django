@@ -30,7 +30,7 @@
 - [23. Async login & Store draft data](/docs/23-Async-login&Store-draft-data.md)
 - [24. Comments paging](/docs/24-Comments-paging.md)
 ---
-- [25. Vote function (Async)](/docs/25-Vote(recommend).md)
+- [25. Vote function (Async) + N+1 query issue](/docs/25-Vote(recommend).md)
 - [26. Search post in post_list (basic 'title' search)]
 - [27. Search post in post_list (input 'search_target')]
 ---

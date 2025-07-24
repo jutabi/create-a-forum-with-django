@@ -31,8 +31,7 @@
 - [24. Comments paging](/docs/24-Comments-paging.md)
 ---
 - [25. Vote function (Async) + N+1 query issue](/docs/25-Vote(recommend).md)
-- [26. Search post in post_list (basic 'title' search)]
-- [27. Search post in post_list (input 'search_target')]
+- [26. Search post](/docs/26-Search-Posts.md)
 ---
 - [28. Password reset (with using Django PasswordResetView)]
 - [29. Password reset (secure secret keys with using django-environ)]

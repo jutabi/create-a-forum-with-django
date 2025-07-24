@@ -67,7 +67,7 @@ class Comment(models.Model):
     ...
     voted_users = models.ManyToManyField(ForumUser, related_name='voted_comments')
 ```
-위처럼 related_name에 원하는 메서드 명을 전달할 수 있습니다. 기존과 같이 User.voted_comments.all() 메서드 형태로 접근 가능합니다.
+related_name에 원하는 메서드 명을 전달할 수 있습니다. 기존과 같이 User.voted_comments.all() 메서드 형태로 접근 가능합니다.
 
 위처럼 author 속성에도 related_name에 인자를 전달 해 주면 User.posts.all()을 이용해 접근할 수 있고, 
 만약 전달하지 않았다면 기존처럼 User.post_set.all()을 이용해 작성한 게시물을 불러오고, User.voted_posts.all()을 이용해 추천한 게시물을 불러올 수 있습니다.

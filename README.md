@@ -33,9 +33,9 @@
 - [25. Vote function (Async) + N+1 query issue](/docs/25-Vote(recommend).md)
 - [26. Search post](/docs/26-Search-Posts.md)
 ---
-- [28. Password reset (with using Django PasswordResetView)]
-- [29. Password reset (secure secret keys with using django-environ)]
-- [30. Password change]
+- [27. Password reset](/docs/27-Password-Reset.md)
+- [28. SMTP & django-environ]
+- [29. Password change]
 ---
 - [31. Member's profile page(show created posts, comments, voted_posts)]
 - [32. Membership cancellation in profile page]

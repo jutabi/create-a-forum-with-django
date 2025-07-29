@@ -34,7 +34,7 @@
 - [26. Search post](/docs/26-Search-Posts.md)
 ---
 - [27. Password reset](/docs/27-Password-Reset.md)
-- [28. SMTP & django-environ]
+- [28. SMTP & django-environ](/docs/28-SMTP&django-environ.md)
 - [29. Password change]
 ---
 - [31. Member's profile page(show created posts, comments, voted_posts)]

@@ -35,7 +35,7 @@
 ---
 - [27. Password reset](/docs/27-Password-Reset.md)
 - [28. SMTP & django-environ](/docs/28-SMTP&django-environ.md)
-- [29. Password change]
+- [29. Password change](/docs/29-Password-Change.md)
 ---
 - [31. Member's profile page(show created posts, comments, voted_posts)]
 - [32. Membership cancellation in profile page]

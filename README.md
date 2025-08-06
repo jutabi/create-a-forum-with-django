@@ -38,10 +38,11 @@
 - [29. Password change](/docs/29-Password-Change.md)
 ---
 - [30. Member's profile page(show created posts, comments, voted_posts)](/docs/30-Pofile-page.md)
-- [31. Membership cancellation in profile page]
+- [31. Membership cancellation in profile page](/docs/31-Membership-cancellation.md)
+- [32. \_\_init__(), super() method in Class]
 ---
-- [32. Post views count]
-- [33. Add Markdown editor in CREATE, MODIFY Post]
+- [33. Post views count]
+- [34. Add Markdown editor in CREATE, MODIFY Post]
 ---
 - 세션 타임아웃 지정
 - 신규 댓글 알림 (short polling)

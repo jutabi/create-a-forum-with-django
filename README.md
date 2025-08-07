@@ -39,7 +39,7 @@
 ---
 - [30. Member's profile page(show created posts, comments, voted_posts)](/docs/30-Pofile-page.md)
 - [31. Membership cancellation in profile page](/docs/31-Membership-cancellation.md)
-- [32. \_\_init__(), super() method in Class]
+- [32. \_\_init__(), super() method in Class](/docs/32-__init__&super().md)
 ---
 - [33. Post views count]
 - [34. Add Markdown editor in CREATE, MODIFY Post]
